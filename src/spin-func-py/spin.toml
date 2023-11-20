@@ -1,0 +1,15 @@
+spin_manifest_version = "1"
+authors = ["Justin Pflueger <justin.pflueger@fermyon.com>"]
+description = "Spin function written in Python"
+name = "spin-func-py"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "spin-func-py"
+source = "app.wasm"
+[component.trigger]
+route = "/..."
+[component.build]
+command = "spin py2wasm app -o app.wasm"
+watch = ["app.py", "Pipfile"]

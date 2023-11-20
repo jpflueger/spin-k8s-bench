@@ -1,0 +1,14 @@
+spin_manifest_version = "1"
+authors = ["Justin Pflueger <justin.pflueger@fermyon.com>"]
+description = "Spin function written in C#"
+name = "spin-func-cs"
+version = "1.0.0"
+trigger = { type = "http", base = "/" }
+
+[[component]]
+id = "spin_func_cs"
+source = "bin/Release/net7.0/SpinFuncCs.wasm"
+[component.build]
+command = "dotnet build -c Release"
+[component.trigger]
+route = "/..."
