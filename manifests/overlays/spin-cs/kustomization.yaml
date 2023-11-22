@@ -1,0 +1,10 @@
+resources:
+  - ../../base/spin
+nameSuffix: -cs
+commonAnnotations:
+  func-lang: cs
+commonLabels:
+  app: spin-func-cs
+images:
+- name: spin-func
+  newName: spin-func-cs

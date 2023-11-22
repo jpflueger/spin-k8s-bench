@@ -1,0 +1,10 @@
+resources:
+  - ../../base/spin
+nameSuffix: -js
+commonAnnotations:
+  func-lang: js
+commonLabels:
+  app: spin-func-js
+images:
+- name: spin-func
+  newName: spin-func-js

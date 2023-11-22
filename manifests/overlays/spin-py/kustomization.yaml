@@ -1,0 +1,10 @@
+resources:
+  - ../../base/spin
+nameSuffix: -py
+commonAnnotations:
+  func-lang: py
+commonLabels:
+  app: spin-func-py
+images:
+- name: spin-func
+  newName: spin-func-py

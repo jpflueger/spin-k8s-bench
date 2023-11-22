@@ -1,0 +1,14 @@
+namespace: spin-funcs-v1
+
+resources:
+  - ./overlays/spin-cs
+  - ./overlays/spin-js
+  - ./overlays/spin-py
+
+images:
+- name: spin-func-cs
+  newName: jpflueger/spin-func-cs
+- name: spin-func-js
+  newName: jpflueger/spin-func-js
+- name: spin-func-py
+  newName: jpflueger/spin-func-py
