@@ -1,19 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spin-func
+  name: azfn-func
 spec:
   template:
     spec:
-      runtimeClassName: wasmtime-spin-v1
       containers:
-        - name: spin-func
-          image: spin-func:latest
+        - name: azfn-func
+          image: azfn-func:latest
           ports:
             - containerPort: 80
               name: http
       tolerations:
       - key: func-runtime
         operator: Equal
-        value: spin
+        value: azfn
         effect: NoSchedule

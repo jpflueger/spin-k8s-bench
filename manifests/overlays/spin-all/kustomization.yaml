@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: spin-all
+
+namespace: spin-funcs-v1
+
+resources:
+  # - ../spin-cs
+  - ../spin-js
+  - ../spin-py
+
+images:
+# - name: spin-func-cs
+#   newName: jpflueger/spin-func-cs
+- name: spin-func-js
+  newName: jpflueger/spin-func-js
+- name: spin-func-py
+  newName: jpflueger/spin-func-py
