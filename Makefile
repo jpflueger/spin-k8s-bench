@@ -51,3 +51,10 @@ docker-push-spin:
 	# docker push $(REPO)/spin-func-cs:$(TAG)
 	docker push $(REPO)/spin-func-js:$(TAG)
 	docker push $(REPO)/spin-func-py:$(TAG)
+
+manifests.yaml:
+	kustomize build manifests --enable-helm --output manifests.yaml
+
+.PHONY: apply-manifests
+apply-manifests: manifests.yaml
+	kubectl apply --dry-run=client -f manifests.yaml
