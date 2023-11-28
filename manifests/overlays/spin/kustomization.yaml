@@ -17,3 +17,11 @@ images:
   newName: jpflueger/spin-func-js
 - name: spin-func-py
   newName: jpflueger/spin-func-py
+
+helmCharts:
+- name: spin-containerd-shim-installer
+  repo: https://charts.fermyon.app
+  version: 0.9.2
+  releaseName: spin-containerd-shim-installer
+  namespace: spin-funcs-v1
+  valuesFile: values.yaml

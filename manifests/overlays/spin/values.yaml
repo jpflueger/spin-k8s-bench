@@ -1,0 +1,5 @@
+tolerations:
+- key: func-runtime
+  operator: Equal
+  value: spin
+  effect: NoSchedule

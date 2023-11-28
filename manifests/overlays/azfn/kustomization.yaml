@@ -23,5 +23,5 @@ helmCharts:
   repo: https://kedacore.github.io/charts
   version: 2.12.0
   releaseName: keda
-  namespace: keda
+  namespace: az-funcs-v1
   valuesFile: values.yaml
