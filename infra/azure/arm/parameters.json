@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "managedClusters_aks_bench_spinvaf_name": {
+            "value": null
+        },
+        "publicIPAddresses_7dd02d7d_2f24_46f2_a37e_1f821f5247ea_externalid": {
+            "value": null
+        },
+        "userAssignedIdentities_aks_bench_spinvaf_agentpool_externalid": {
+            "value": null
+        }
+    }
+}
