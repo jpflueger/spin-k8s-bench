@@ -2,5 +2,6 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- ./overlays/spin-all
-- ./overlays/azfn-all
+- ./overlays/spin
+# Uncomment the following line to enable the Azure Functions deployments
+# - ./overlays/azfn

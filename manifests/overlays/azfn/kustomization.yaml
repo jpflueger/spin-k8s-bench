@@ -6,9 +6,9 @@ metadata:
 namespace: azfn-funcs-v1
 
 resources:
-  # - ../azfn-cs
-  - ../azfn-js
-  - ../azfn-py
+  # - ./azfn-cs
+  - ./azfn-js
+  - ./azfn-py
 
 images:
 # - name: azfn-func-cs

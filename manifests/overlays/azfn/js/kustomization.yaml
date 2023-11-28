@@ -3,7 +3,7 @@ kind: Kustomization
 metadata:
   name: azfn-js
 resources:
-  - ../../base/azfn
+  - ../../../base/azfn
 nameSuffix: -js
 commonAnnotations:
   func-lang: js

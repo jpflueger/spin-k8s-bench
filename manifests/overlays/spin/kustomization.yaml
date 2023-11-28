@@ -6,9 +6,9 @@ metadata:
 namespace: spin-funcs-v1
 
 resources:
-  # - ../spin-cs
-  - ../spin-js
-  - ../spin-py
+  # - ./cs
+  - ./js
+  - ./py
 
 images:
 # - name: spin-func-cs
