@@ -6,13 +6,13 @@ metadata:
 namespace: spin-funcs-v1
 
 resources:
-  # - ./cs
-  - ./js
-  - ./py
+  - cs
+  - js
+  - py
 
 images:
-# - name: spin-func-cs
-#   newName: jpflueger/spin-func-cs
+- name: spin-func-cs
+  newName: jpflueger/spin-func-cs
 - name: spin-func-js
   newName: jpflueger/spin-func-js
 - name: spin-func-py
