@@ -3,8 +3,7 @@ kind: Kustomization
 
 resources:
 - ./overlays/spin
-# Uncomment the following line to enable the Azure Functions deployments
-# - ./overlays/azfn
+- ./overlays/azfn
 
 helmCharts:
 - name: ingress-nginx
