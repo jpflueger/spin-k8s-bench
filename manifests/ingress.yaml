@@ -10,13 +10,6 @@ spec:
   rules:
   - http:
       paths:
-      # - path: /spin/cs
-      #   pathType: Prefix
-      #   backend:
-      #     service:
-      #       name: spin-func-cs
-      #       port:
-      #         name: http
       - path: /spin/js
         pathType: Prefix
         backend:

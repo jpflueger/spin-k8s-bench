@@ -9,10 +9,6 @@ docker-build: docker-build-spin
 .PHONY: docker-build-spin
 docker-build-spin: docker-build-spin-js docker-build-spin-py
 
-.PHONY: docker-build-spin-cs
-docker-build-spin-cs:
-	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-func-cs:$(TAG) ./src/spin-func-cs
-
 .PHONY: docker-build-spin-js
 docker-build-spin-js:
 	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-func-js:$(TAG) ./src/spin-func-js
@@ -26,7 +22,6 @@ docker-push: docker-push-spin
 
 .PHONY: docker-push-spin
 docker-push-spin:
-	# docker push $(REPO)/spin-func-cs:$(TAG)
 	docker push $(REPO)/spin-func-js:$(TAG)
 	docker push $(REPO)/spin-func-py:$(TAG)
 
