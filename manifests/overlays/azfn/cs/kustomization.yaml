@@ -8,7 +8,7 @@ nameSuffix: -cs
 commonAnnotations:
   func-lang: cs
 commonLabels:
-  app: azfn-func-cs
+  app: az-func-cs
 images:
-- name: azfn-func
-  newName: azfn-func-cs
+- name: az-func
+  newName: az-func-cs

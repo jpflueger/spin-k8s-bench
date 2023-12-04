@@ -1,0 +1,13 @@
+controller:
+  replicaCount: 2
+  service:
+    annotations:
+      "service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path": /healthz
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: Equal
+      value: "true"
+      effect: "NoSchedule"
+  nodeSelector:
+    kubernetes.io/os: linux
+    kubernetes.azure.com/mode: system

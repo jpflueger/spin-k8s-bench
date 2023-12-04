@@ -1,9 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 metadata:
-  name: azfn-all
-
-namespace: azfn-funcs-v1
+  name: azfn
 
 resources:
   # - ./cs
@@ -11,17 +9,9 @@ resources:
   - ./py
 
 images:
-# - name: azfn-func-cs
-#   newName: jpflueger/azfn-func-cs
-- name: azfn-func-js
-  newName: jpflueger/azfn-func-js
-- name: azfn-func-py
-  newName: jpflueger/azfn-func-py
-
-helmCharts:
-- name: keda
-  repo: https://kedacore.github.io/charts
-  version: 2.12.0
-  releaseName: keda
-  namespace: az-funcs-v1
-  valuesFile: values.yaml
+# - name: az-func-cs
+#   newName: jpflueger/az-func-cs
+- name: az-func-js
+  newName: jpflueger/az-func-js
+- name: az-func-py
+  newName: jpflueger/az-func-py

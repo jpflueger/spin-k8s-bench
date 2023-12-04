@@ -8,7 +8,7 @@ nameSuffix: -js
 commonAnnotations:
   func-lang: js
 commonLabels:
-  app: azfn-func-js
+  app: az-func-js
 images:
-- name: azfn-func
-  newName: azfn-func-js
+- name: az-func
+  newName: az-func-js

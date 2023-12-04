@@ -3,26 +3,15 @@ kind: Kustomization
 metadata:
   name: spin
 
-namespace: spin-funcs-v1
-
 resources:
-  - cs
+  # - cs
   - js
   - py
-  - ingress.yaml
 
 images:
-- name: spin-func-cs
-  newName: jpflueger/spin-func-cs
+# - name: spin-func-cs
+#   newName: jpflueger/spin-func-cs
 - name: spin-func-js
   newName: jpflueger/spin-func-js
 - name: spin-func-py
   newName: jpflueger/spin-func-py
-
-helmCharts:
-- name: spin-containerd-shim-installer
-  repo: https://charts.fermyon.app
-  version: 0.9.2
-  releaseName: spin-containerd-shim-installer
-  namespace: spin-funcs-v1
-  valuesFile: values.yaml

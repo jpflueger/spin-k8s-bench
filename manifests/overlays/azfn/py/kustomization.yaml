@@ -8,7 +8,7 @@ nameSuffix: -py
 commonAnnotations:
   func-lang: py
 commonLabels:
-  app: azfn-func-py
+  app: az-func-py
 images:
-- name: azfn-func
-  newName: azfn-func-py
+- name: az-func
+  newName: az-func-py

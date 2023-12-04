@@ -1,7 +1,0 @@
-nodeSelector:
-  agentpool: npspin01
-tolerations:
-- key: func-runtime
-  operator: Equal
-  value: spin
-  effect: NoSchedule

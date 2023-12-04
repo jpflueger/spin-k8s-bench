@@ -12,8 +12,5 @@ spec:
           ports:
             - containerPort: 80
               name: http
-      tolerations:
-      - key: func-runtime
-        operator: Equal
-        value: spin
-        effect: NoSchedule
+      nodeSelector:
+        func-runtime: spin

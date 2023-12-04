@@ -4,11 +4,4 @@ kind: Kustomization
 resources:
 - ./overlays/spin
 - ./overlays/azfn
-
-helmCharts:
-- name: ingress-nginx
-  repo: https://kubernetes.github.io/ingress-nginx
-  version: 4.8.3
-  releaseName: ingress-nginx
-  namespace: ingress
-  valuesFile: values.yaml
+- ingress.yaml

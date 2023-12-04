@@ -1,18 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: azfn-func
+  name: az-func
 spec:
   template:
     spec:
       containers:
-        - name: azfn-func
-          image: azfn-func:latest
+        - name: az-func
+          image: az-func:latest
           ports:
             - containerPort: 80
               name: http
-      tolerations:
-      - key: func-runtime
-        operator: Equal
-        value: azfn
-        effect: NoSchedule
+      nodeSelector:
+        func-runtime: azfn

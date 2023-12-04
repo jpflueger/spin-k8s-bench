@@ -1,0 +1,54 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: funcs
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      # - path: /spin/cs
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: spin-func-cs
+      #       port:
+      #         name: http
+      - path: /spin/js
+        pathType: Prefix
+        backend:
+          service:
+            name: spin-func-js
+            port:
+              name: http
+      - path: /spin/py
+        pathType: Prefix
+        backend:
+          service:
+            name: spin-func-py
+            port:
+              name: http
+      # - path: /az/cs
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: az-func-cs
+      #       port:
+      #         name: http
+      - path: /az/js
+        pathType: Prefix
+        backend:
+          service:
+            name: az-func-js
+            port:
+              name: http
+      - path: /az/py
+        pathType: Prefix
+        backend:
+          service:
+            name: az-func-py
+            port:
+              name: http

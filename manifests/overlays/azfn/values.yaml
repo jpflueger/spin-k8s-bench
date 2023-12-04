@@ -1,5 +1,0 @@
-tolerations:
-- key: func-runtime
-  operator: Equal
-  value: azfn
-  effect: NoSchedule

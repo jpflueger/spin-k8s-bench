@@ -5,7 +5,7 @@ REPO ?= docker.io/library
 TAG ?= latest
 
 .PHONY: docker-build
-docker-build: docker-build-spin docker-build-az
+docker-build: docker-build-spin docker-build-azfn
 
 .PHONY: docker-build-azfn
 docker-build-azfn: docker-build-azfn-js docker-build-azfn-py
@@ -54,8 +54,32 @@ docker-push-spin:
 
 .PHONY: build-manifests
 build-manifests:
-	kustomize build manifests --enable-helm --output manifests.yaml
+	kustomize build manifests --output manifests.yaml
 
 .PHONY: apply-manifests
 apply-manifests: build-manifests
 	kubectl apply -f manifests.yaml
+
+.PHONY: helm-repos-add
+helm-repos-add:
+	helm repo add kedacore https://kedacore.github.io/charts
+	helm repo add fermyon https://charts.fermyon.app
+	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+	helm repo update
+
+.PHONY: helm-install
+helm-install: helm-repos-add
+	helm install ingress-nginx ingress-nginx/ingress-nginx \
+		-n kube-system  \
+		--version 4.8.3 \
+		--values manifests/nginx-ingress-values.yaml
+
+	helm install keda kedacore/keda \
+		-n kube-system \
+		--version 2.12.0 \
+		--values manifests/keda-values.yaml
+
+	helm install spin fermyon/spin-containerd-shim-installer \
+		--create-namespace -n spin-installer \
+		--version 0.9.2 \
+		--values manifests/spin-values.yaml

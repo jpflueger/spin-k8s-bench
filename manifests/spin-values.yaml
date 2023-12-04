@@ -1,0 +1,2 @@
+nodeSelector:
+  func-runtime: spin
