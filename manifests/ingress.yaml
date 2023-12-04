@@ -31,24 +31,3 @@ spec:
             name: spin-func-py
             port:
               name: http
-      # - path: /az/cs
-      #   pathType: Prefix
-      #   backend:
-      #     service:
-      #       name: az-func-cs
-      #       port:
-      #         name: http
-      - path: /az/js
-        pathType: Prefix
-        backend:
-          service:
-            name: az-func-js
-            port:
-              name: http
-      - path: /az/py
-        pathType: Prefix
-        backend:
-          service:
-            name: az-func-py
-            port:
-              name: http

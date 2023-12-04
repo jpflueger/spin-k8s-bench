@@ -85,34 +85,6 @@
                         "securityProfile": {
                             "sshAccess": "LocalUser"
                         }
-                    },
-                    {
-                        "name": "npazfn01",
-                        "count": 1,
-                        "vmSize": "Standard_D2s_v3",
-                        "osDiskSizeGB": 128,
-                        "osDiskType": "Managed",
-                        "kubeletDiskType": "OS",
-                        "maxPods": 110,
-                        "type": "VirtualMachineScaleSets",
-                        "enableAutoScaling": false,
-                        "scaleDownMode": "Delete",
-                        "powerState": {
-                            "code": "Running"
-                        },
-                        "orchestratorVersion": "1.27.7",
-                        "enableNodePublicIP": false,
-                        "nodeTaints": [
-                            "func-runtime=azfn:NoSchedule"
-                        ],
-                        "mode": "User",
-                        "osType": "Linux",
-                        "osSKU": "Ubuntu",
-                        "upgradeSettings": {},
-                        "enableFIPS": false,
-                        "securityProfile": {
-                            "sshAccess": "LocalUser"
-                        }
                     }
                 ],
                 "servicePrincipalProfile": {
@@ -245,41 +217,6 @@
                 "mode": "System",
                 "osType": "Linux",
                 "osSKU": "Ubuntu",
-                "enableFIPS": false,
-                "securityProfile": {
-                    "sshAccess": "LocalUser"
-                }
-            }
-        },
-        {
-            "type": "Microsoft.ContainerService/managedClusters/agentPools",
-            "apiVersion": "2023-08-02-preview",
-            "name": "[concat(parameters('managedClusters_aks_bench_spinvaf_name'), '/npazfn01')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ContainerService/managedClusters', parameters('managedClusters_aks_bench_spinvaf_name'))]"
-            ],
-            "properties": {
-                "count": 1,
-                "vmSize": "Standard_D2s_v3",
-                "osDiskSizeGB": 128,
-                "osDiskType": "Managed",
-                "kubeletDiskType": "OS",
-                "maxPods": 110,
-                "type": "VirtualMachineScaleSets",
-                "enableAutoScaling": false,
-                "scaleDownMode": "Delete",
-                "powerState": {
-                    "code": "Running"
-                },
-                "orchestratorVersion": "1.27.7",
-                "enableNodePublicIP": false,
-                "nodeTaints": [
-                    "func-runtime=azfn:NoSchedule"
-                ],
-                "mode": "User",
-                "osType": "Linux",
-                "osSKU": "Ubuntu",
-                "upgradeSettings": {},
                 "enableFIPS": false,
                 "securityProfile": {
                     "sshAccess": "LocalUser"

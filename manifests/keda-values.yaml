@@ -1,7 +1,0 @@
-tolerations:
-  - key: "CriticalAddonsOnly"
-    operator: "Equal"
-    value: "true"
-    effect: "NoSchedule"
-nodeSelector:
-  kubernetes.azure.com/mode: system

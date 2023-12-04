@@ -1,5 +1,0 @@
-resources:
-- deployment.yaml
-- service.yaml
-commonAnnotations:
-  func-host: azfn
