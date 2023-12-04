@@ -11,10 +11,15 @@ docker-build-spin: docker-build-spin-js docker-build-spin-py
 
 .PHONY: docker-build-spin-js
 docker-build-spin-js:
+	cd src/spin-func-js
+	npm install
+	spin build
 	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-func-js:$(TAG) ./src/spin-func-js
 
 .PHONY: docker-build-spin-py
 docker-build-spin-py:
+	cd src/spin-func-py
+	spin build
 	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-func-py:$(TAG) ./src/spin-func-py
 
 .PHONY: docker-push
@@ -25,13 +30,9 @@ docker-push-spin:
 	docker push $(REPO)/spin-func-js:$(TAG)
 	docker push $(REPO)/spin-func-py:$(TAG)
 
-.PHONY: build-manifests
-build-manifests:
-	kustomize build manifests --output manifests.yaml
-
 .PHONY: apply-manifests
-apply-manifests: build-manifests
-	kubectl apply -f manifests.yaml
+apply-manifests:
+	kubectl apply -k ./manifests
 
 .PHONY: helm-repos-add
 helm-repos-add:
