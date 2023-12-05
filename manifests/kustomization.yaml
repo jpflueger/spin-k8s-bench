@@ -4,3 +4,11 @@ kind: Kustomization
 resources:
 - ./overlays/spin
 - ingress.yaml
+
+images:
+- name: spin-func-js
+  newName: jpflueger/spin-func-js
+  newTag: rc2
+- name: spin-func-py
+  newName: jpflueger/spin-func-py
+  newTag: rc2

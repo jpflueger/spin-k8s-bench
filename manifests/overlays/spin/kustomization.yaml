@@ -6,9 +6,3 @@ metadata:
 resources:
   - js
   - py
-
-images:
-- name: spin-func-js
-  newName: jpflueger/spin-func-js
-- name: spin-func-py
-  newName: jpflueger/spin-func-py
