@@ -2,3 +2,6 @@
 .local
 charts/
 manifests.yaml
+*tfstate*
+.terraform/
+.terraform.lock.hcl

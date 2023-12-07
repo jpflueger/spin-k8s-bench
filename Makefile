@@ -29,7 +29,7 @@ docker-push-spin:
 
 .PHONY: apply-manifests
 apply-manifests:
-	kubectl kustomize ./manifests -e IMAGE_TAG=$(TAG) > manifests/rendered.yaml
+	kubectl apply -k ./manifests
 
 .PHONY: helm-repos-add
 helm-repos-add:
