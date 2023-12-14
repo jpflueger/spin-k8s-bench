@@ -11,7 +11,12 @@ This repository contains source code, scripts, IaC and Kubernetes manifests to r
 
 ## Setup the AKS cluster
 
-TODO
+To setup a cluster you can use the terraform module provided in `infra/azure`.
+
+```script
+terraform init
+terraform apply
+```
 
 ## Installing required Helm charts
 
@@ -32,12 +37,10 @@ helm install ingress-nginx ingress-nginx/ingress-nginx \
     --values manifests/nginx-ingress-values.yaml
 
 # install the containerd shim for spin
-helm repo add fermyon https://charts.fermyon.app
-helm repo update
-helm install spin fermyon/spin-containerd-shim-installer \
-    --create-namespace -n spin-installer \
-    --version 0.9.2 \
-    --values manifests/spin-values.yaml
+helm install spin-containerd-shim-installer oci://ghcr.io/fermyon/charts/spin-containerd-shim-installer \
+  -n kube-system \
+  --version 0.10.0 \
+  --values manifests/spin-values.yaml
 ```
 
 ## Building docker images
@@ -67,9 +70,9 @@ spin build
 docker buildx build --platform=wasi/wasm --provenance=false docker.io/<username>/spin-func-py:latest
 ```
 
-## Deploying the Spin functions
+## Deploying the functions
 
-The Spin functions are currently templatized using kustomize for simplicity. 
+The functions are currently templatized using kustomize for simplicity. 
 
 ```script
 # use the Makefile target
@@ -86,7 +89,26 @@ kubectl apply -k ./manifests
 kubectl kustomize ./manifests
 ```
 
+## Running the tests from local
+
+To start with, you can run the k6 benchmark tests from your local computer. Currently it uses port-forwarding to interact with the pods you deployed in the previous step. 
+
+```script
+make k6-run
+```
+
+If you want to run them manually you can use the following command.
+
+```script
+./benches/run.sh spin js
+./benches/run.sh spin py
+./benches/run.sh azfn js
+./benches/run.sh azfn py
+```
+
 ## Summary Results
+
+This is a summary of request execution time generated from the k6 benchmark performed on 12/14/2023. Full representation of the data can be found in json format under the `benches` directory.
 
 | Runtime | Language | Avg. Response Time | Min. Response Time | Max. Response Time | 90th Percentile | 95th Percentile |
 | ------- | -------- | ------------------ | ------------------ | ------------------ | --------------- | --------------- |
