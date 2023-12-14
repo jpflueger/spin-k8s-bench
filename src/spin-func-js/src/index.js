@@ -1,8 +1,10 @@
 export async function handleRequest(request) {
-    console.log(`Url: ${request.headers['spin-full-url']}`);
-    return {
-        status: 200,
-        headers: { "foo": "bar" },
-        body: "Hello from JS-SDK"
-    }
+  return {
+    status: 200,
+    headers: {
+      "server": "spin",
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({ message: "Hello, world!" })
+  }
 }

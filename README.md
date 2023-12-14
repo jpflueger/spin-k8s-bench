@@ -85,3 +85,12 @@ kubectl apply -k ./manifests
 # alternatively view the manifests before applying them
 kubectl kustomize ./manifests
 ```
+
+## Summary Results
+
+| Runtime | Language | Avg. Response Time | Min. Response Time | Max. Response Time | 90th Percentile | 95th Percentile |
+| ------- | -------- | ------------------ | ------------------ | ------------------ | --------------- | --------------- |
+| spin    | js       | 86.1ms             | 59.25ms            | 391.64ms           | 108.9ms         | 186.51ms        |
+| spin    | py       | 91ms               | 58.74ms            | 400.75ms           | 154.36ms        | 254.73ms        |
+| azfn    | js       | 88.63ms            | 58.58ms            | 376.16ms           | 118.33ms        | 217.46ms        |
+| azfn    | py       | 87.83ms            | 59.19ms            | 445.16ms           | 128.87ms        | 190.21ms        |

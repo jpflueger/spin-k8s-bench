@@ -9,7 +9,7 @@ version = "0.1.0"
 id = "spin-func-py"
 source = "app.wasm"
 [component.trigger]
-route = "/..."
+route = "/json"
 [component.build]
 command = "spin py2wasm app -o app.wasm"
 watch = ["app.py", "Pipfile"]

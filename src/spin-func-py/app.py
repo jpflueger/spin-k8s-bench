@@ -1,8 +1,11 @@
 from spin_http import Response
-
+import json
 
 def handle_request(request):
-    print(f"Url: {request.headers['spin-full-url']}")
+    body = json.dumps({ "message": "Hello, world!" })
     return Response(200,
-                    {"content-type": "text/plain"},
-                    bytes(f"Hello from the Python SDK", "utf-8"))
+                    {
+                      "server": "spin",
+                      "content-type": "application/json"
+                    },
+                    bytes(body, "utf-8"))

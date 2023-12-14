@@ -1,27 +1,16 @@
 import azure.functions as func
-import datetime
 import json
-import logging
 
 app = func.FunctionApp()
 
-@app.route(route="HttpExample", auth_level=func.AuthLevel.ANONYMOUS)
-def HttpExample(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
-
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
-
-    if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    else:
-        return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
+@app.route(route="json", auth_level=func.AuthLevel.ANONYMOUS)
+def handle_json(req: func.HttpRequest) -> func.HttpResponse:
+    body = json.dumps({ "message": "Hello, world!" })
+    return func.HttpResponse(
+        body=body,
+        status_code=200,
+        headers={ 
+          "server": "azure-functions" 
+        },
+        mimetype="application/json",
+    )

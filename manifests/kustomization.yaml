@@ -9,9 +9,13 @@ resources:
 images:
 - name: spin-js
   newName: jpflueger/spin-js
+  newTag: ef1ff29
 - name: spin-py
   newName: jpflueger/spin-py
+  newTag: ef1ff29
 - name: azfn-js
   newName: jpflueger/azfn-js
+  newTag: ef1ff29
 - name: azfn-py
   newName: jpflueger/azfn-py
+  newTag: ef1ff29

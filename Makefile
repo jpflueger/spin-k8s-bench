@@ -22,11 +22,11 @@ docker-build-azfn: docker-build-azfn-js docker-build-azfn-py
 
 .PHONY: docker-build-azfn-js
 docker-build-azfn-js:
-	docker build -t $(REPO)/azfn-js:$(TAG) ./src/az-func-js
+	docker build --platform=linux/amd64 -t $(REPO)/azfn-js:$(TAG) ./src/az-func-js
 
 .PHONY: docker-build-azfn-py
 docker-build-azfn-py:
-	docker build -t $(REPO)/azfn-py:$(TAG) ./src/az-func-py
+	docker build --platform=linux/amd64 -t $(REPO)/azfn-py:$(TAG) ./src/az-func-py
 
 .PHONY: docker-push
 docker-push: docker-push-spin docker-push-azfn
@@ -61,3 +61,28 @@ helm-install: helm-repos-add
 		-n kube-system \
 		--version 0.10.0 \
 		--values manifests/spin-values.yaml
+
+.PHONY: k6-run
+k6-run: k6-run-spin k6-run-azfn
+
+.PHONY: k6-run-spin
+k6-run-spin: k6-run-spin-js k6-run-spin-py
+
+.PHONY: k6-run-spin-js
+k6-run-spin-js:
+	./benches/run.sh spin js
+
+.PHONY: k6-run-spin-py
+k6-run-spin-py:
+	./benches/run.sh spin py
+
+.PHONY: k6-run-azfn
+k6-run-azfn: k6-run-azfn-js k6-run-azfn-py
+
+.PHONY: k6-run-azfn-js
+k6-run-azfn-js:
+	./benches/run.sh azfn js
+
+.PHONY: k6-run-azfn-py
+k6-run-azfn-py:
+	./benches/run.sh azfn py
