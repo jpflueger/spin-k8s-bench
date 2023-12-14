@@ -1,14 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 metadata:
-  name: spin-py
+  name: azfn-js
 resources:
-  - ../../../base/spin
-nameSuffix: -py
+  - ../../../base/azfn
+nameSuffix: -js
 commonAnnotations:
-  func-lang: py
+  func-lang: js
 commonLabels:
-  app: spin-py
+  app: azfn-js
 images:
-- name: spin
-  newName: spin-py
+- name: azfn
+  newName: azfn-js

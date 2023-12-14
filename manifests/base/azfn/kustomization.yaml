@@ -2,4 +2,4 @@ resources:
 - deployment.yaml
 - service.yaml
 commonAnnotations:
-  func-runtime: spin
+  func-runtime: azfn

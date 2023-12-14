@@ -3,12 +3,15 @@ kind: Kustomization
 
 resources:
 - ./overlays/spin
+- ./overlays/azfn
 - ingress.yaml
 
 images:
-- name: spin-func-js
-  newName: jpflueger/spin-func-js
-  newTag: rc2
-- name: spin-func-py
-  newName: jpflueger/spin-func-py
-  newTag: rc2
+- name: spin-js
+  newName: jpflueger/spin-js
+- name: spin-py
+  newName: jpflueger/spin-py
+- name: azfn-js
+  newName: jpflueger/azfn-js
+- name: azfn-py
+  newName: jpflueger/azfn-py

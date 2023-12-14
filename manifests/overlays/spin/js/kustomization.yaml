@@ -8,7 +8,7 @@ nameSuffix: -js
 commonAnnotations:
   func-lang: js
 commonLabels:
-  app: spin-func-js
+  app: spin-js
 images:
-- name: spin-func
-  newName: spin-func-js
+- name: spin
+  newName: spin-js

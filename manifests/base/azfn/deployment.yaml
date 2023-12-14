@@ -1,16 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spin
+  name: azfn
 spec:
   template:
     spec:
-      runtimeClassName: wasmtime-spin-v1
       containers:
-        - name: spin
-          image: spin:latest
+        - name: azfn
+          image: azfn:latest
           ports:
             - containerPort: 80
               name: http
       nodeSelector:
-        func-runtime: spin
+        func-runtime: azfn

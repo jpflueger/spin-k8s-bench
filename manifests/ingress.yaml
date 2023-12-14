@@ -10,17 +10,31 @@ spec:
   rules:
   - http:
       paths:
+      - path: /azfn/js
+        pathType: Prefix
+        backend:
+          service:
+            name: azfn-js
+            port:
+              name: http
+      - path: /azfn/py
+        pathType: Prefix
+        backend:
+          service:
+            name: azfn-py
+            port:
+              name: http
       - path: /spin/js
         pathType: Prefix
         backend:
           service:
-            name: spin-func-js
+            name: spin-js
             port:
               name: http
       - path: /spin/py
         pathType: Prefix
         backend:
           service:
-            name: spin-func-py
+            name: spin-py
             port:
               name: http

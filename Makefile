@@ -4,28 +4,42 @@ REPO ?= docker.io/library
 TAG ?= latest
 
 .PHONY: docker-build
-docker-build: docker-build-spin
+docker-build: docker-build-spin docker-build-azfn
 
 .PHONY: docker-build-spin
 docker-build-spin: docker-build-spin-js docker-build-spin-py
 
 .PHONY: docker-build-spin-js
 docker-build-spin-js:
-	cd src/spin-func-js && npm install && spin build
-	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-func-js:$(TAG) ./src/spin-func-js
+	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-js:$(TAG) ./src/spin-func-js
 
 .PHONY: docker-build-spin-py
 docker-build-spin-py:
-	cd src/spin-func-py && spin build
-	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-func-py:$(TAG) ./src/spin-func-py
+	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-py:$(TAG) ./src/spin-func-py
+
+.PHONY: docker-build-azfn
+docker-build-azfn: docker-build-azfn-js docker-build-azfn-py
+
+.PHONY: docker-build-azfn-js
+docker-build-azfn-js:
+	docker build -t $(REPO)/azfn-js:$(TAG) ./src/az-func-js
+
+.PHONY: docker-build-azfn-py
+docker-build-azfn-py:
+	docker build -t $(REPO)/azfn-py:$(TAG) ./src/az-func-py
 
 .PHONY: docker-push
-docker-push: docker-push-spin
+docker-push: docker-push-spin docker-push-azfn
 
 .PHONY: docker-push-spin
 docker-push-spin:
-	docker push $(REPO)/spin-func-js:$(TAG)
-	docker push $(REPO)/spin-func-py:$(TAG)
+	docker push $(REPO)/spin-js:$(TAG)
+	docker push $(REPO)/spin-py:$(TAG)
+
+.PHONY: docker-push-azfn
+docker-push-azfn:
+	docker push $(REPO)/azfn-js:$(TAG)
+	docker push $(REPO)/azfn-py:$(TAG)
 
 .PHONY: apply-manifests
 apply-manifests:
@@ -33,7 +47,6 @@ apply-manifests:
 
 .PHONY: helm-repos-add
 helm-repos-add:
-	helm repo add fermyon https://charts.fermyon.app
 	helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 	helm repo update
 
@@ -44,7 +57,7 @@ helm-install: helm-repos-add
 		--version 4.8.3 \
 		--values manifests/nginx-ingress-values.yaml
 
-	helm install spin fermyon/spin-containerd-shim-installer \
-		--create-namespace -n spin-installer \
-		--version 0.9.2 \
+	helm install spin-containerd-shim-installer oci://ghcr.io/fermyon/charts/spin-containerd-shim-installer \
+		-n kube-system \
+		--version 0.10.0 \
 		--values manifests/spin-values.yaml
