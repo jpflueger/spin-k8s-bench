@@ -1,0 +1,18 @@
+spin_manifest_version = 2
+
+[application]
+name = "spin-func-rust"
+version = "0.1.0"
+authors = ["Justin Pflueger <justin.pflueger@fermyon.com>"]
+description = ""
+
+[[trigger.http]]
+route = "/..."
+component = "spin-func-rust"
+
+[component.spin-func-rust]
+source = "target/wasm32-wasi/release/spin_func_rust.wasm"
+allowed_outbound_hosts = []
+[component.spin-func-rust.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]

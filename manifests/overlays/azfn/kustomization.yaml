@@ -6,3 +6,11 @@ metadata:
 resources:
   - js
   - py
+
+images:
+- name: azfn-js
+  newName: jpflueger/azfn-js
+  newTag: 67314bc
+- name: azfn-py
+  newName: jpflueger/azfn-py
+  newTag: 67314bc

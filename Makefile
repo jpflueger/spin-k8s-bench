@@ -7,7 +7,7 @@ TAG ?= latest
 docker-build: docker-build-spin docker-build-azfn
 
 .PHONY: docker-build-spin
-docker-build-spin: docker-build-spin-js docker-build-spin-py
+docker-build-spin: docker-build-spin-js docker-build-spin-py docker-build-spin-rust
 
 .PHONY: docker-build-spin-js
 docker-build-spin-js:
@@ -16,6 +16,10 @@ docker-build-spin-js:
 .PHONY: docker-build-spin-py
 docker-build-spin-py:
 	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-py:$(TAG) ./src/spin-func-py
+
+.PHONY: docker-build-spin-rust
+docker-build-spin-rust:
+	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-rust:$(TAG) ./src/spin-func-rust
 
 .PHONY: docker-build-azfn
 docker-build-azfn: docker-build-azfn-js docker-build-azfn-py
@@ -35,6 +39,7 @@ docker-push: docker-push-spin docker-push-azfn
 docker-push-spin:
 	docker push $(REPO)/spin-js:$(TAG)
 	docker push $(REPO)/spin-py:$(TAG)
+	docker push $(REPO)/spin-rust:$(TAG)
 
 .PHONY: docker-push-azfn
 docker-push-azfn:
@@ -75,6 +80,10 @@ k6-run-spin-js:
 .PHONY: k6-run-spin-py
 k6-run-spin-py:
 	./benches/run.sh spin py
+
+.PHONY: k6-run-spin-rust
+k6-run-spin-rust:
+	./benches/run.sh spin rust
 
 .PHONY: k6-run-azfn
 k6-run-azfn: k6-run-azfn-js k6-run-azfn-py

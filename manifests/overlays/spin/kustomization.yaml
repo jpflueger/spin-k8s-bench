@@ -6,3 +6,16 @@ metadata:
 resources:
   - js
   - py
+  - rust
+
+
+images:
+- name: spin-js
+  newName: jpflueger/spin-js
+  newTag: 67314bc
+- name: spin-py
+  newName: jpflueger/spin-py
+  newTag: 67314bc
+- name: spin-rust
+  newName: jpflueger/spin-rust
+  newTag: 67314bc

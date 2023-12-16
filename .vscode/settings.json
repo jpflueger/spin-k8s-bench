@@ -1,0 +1,5 @@
+{
+  "rust-analyzer.linkedProjects": [
+    "${workspaceFolder}/src/spin-func-rust/Cargo.toml"
+  ]
+}
