@@ -1,7 +1,19 @@
-variable "prefix" { default = "" }
+variable "prefix" { 
+  default = ""
+}
 
 variable "location" {
   default = "eastus"
+  type    = string
+}
+
+variable "kubernetes_version" {
+  default = "1.27.7"
+  type    = string
+}
+
+variable "sku_tier" {
+  default = "Free"
   type    = string
 }
 

@@ -1,0 +1,27 @@
+prefix = "spinbench"
+
+location = "eastus"
+
+user_nodepools = [{
+  name       = "npspin"
+  size       = "Standard_DS2_v2"
+  node_count = 1
+  max_pods   = 250
+  labels = {
+    "func-runtime" = "spin"
+  }
+  taints = []
+},{
+  name       = "npazfn"
+  size       = "Standard_DS2_v2"
+  node_count = 1
+  max_pods   = 250
+  labels = {
+    "func-runtime" = "azfn"
+  }
+  taints = []
+}]
+
+tags = {
+  "Purpose"     = "Benchmarking Spin on Kubernetes"
+}

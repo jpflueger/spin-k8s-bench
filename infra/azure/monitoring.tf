@@ -32,6 +32,21 @@ resource "azurerm_log_analytics_workspace" "main" {
   tags = local.tags
 }
 
+resource "azurerm_log_analytics_solution" "containers" {
+  solution_name         = "Containers"
+  workspace_resource_id = azurerm_log_analytics_workspace.main.id
+  workspace_name        = azurerm_log_analytics_workspace.main.name
+  location              = azurerm_resource_group.rg.location
+  resource_group_name   = azurerm_resource_group.rg.name
+
+  plan {
+    publisher = "Microsoft"
+    product   = "OMSGallery/Containers"
+  }
+
+  tags = local.tags
+}
+
 resource "azurerm_monitor_data_collection_rule" "msci" {
   name                = "MSCI-${azurerm_kubernetes_cluster.aks.name}"
   description         = "DCR for Azure Monitor Container Insights"

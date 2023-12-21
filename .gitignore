@@ -5,3 +5,4 @@ manifests.yaml
 *tfstate*
 .terraform/
 .terraform.lock.hcl
+terraform.tfvars
