@@ -3,53 +3,52 @@ SPIN_BUILD_ARGS = --platform=wasi/wasm --provenance=false
 REPO ?= docker.io/library
 TAG ?= latest
 
-.PHONY: docker-build
-docker-build: docker-build-spin docker-build-azfn
+.PHONY: docker
+docker: docker-spin docker-azfn
 
-.PHONY: docker-build-spin
-docker-build-spin: docker-build-spin-js docker-build-spin-py docker-build-spin-rust docker-build-spin-go
+.PHONY: docker-spin
+docker-spin: docker-spin-js docker-spin-py docker-spin-rust docker-spin-go
 
-.PHONY: docker-build-spin-js
-docker-build-spin-js:
+#TODO: we could parameterize this if I were better at make, right?
+
+.PHONY: docker-spin-js
+docker-spin-js:
 	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-js:$(TAG) ./src/spin-func-js
-
-.PHONY: docker-build-spin-py
-docker-build-spin-py:
-	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-py:$(TAG) ./src/spin-func-py
-
-.PHONY: docker-build-spin-rust
-docker-build-spin-rust:
-	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-rust:$(TAG) ./src/spin-func-rust
-
-.PHONY: docker-build-spin-go
-docker-build-spin-go:
-	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-go:$(TAG) ./src/spin-func-go
-
-.PHONY: docker-build-azfn
-docker-build-azfn: docker-build-azfn-js docker-build-azfn-py
-
-.PHONY: docker-build-azfn-js
-docker-build-azfn-js:
-	docker build --platform=linux/amd64 -t $(REPO)/azfn-js:$(TAG) ./src/az-func-js
-
-.PHONY: docker-build-azfn-py
-docker-build-azfn-py:
-	docker build --platform=linux/amd64 -t $(REPO)/azfn-py:$(TAG) ./src/az-func-py
-
-.PHONY: docker-push
-docker-push: docker-push-spin docker-push-azfn
-
-.PHONY: docker-push-spin
-docker-push-spin:
 	docker push $(REPO)/spin-js:$(TAG)
-	docker push $(REPO)/spin-py:$(TAG)
-	docker push $(REPO)/spin-rust:$(TAG)
-	docker push $(REPO)/spin-go:$(TAG)
+	cd manifests/overlays/spin && kustomize edit set image spin-js=$(REPO)/spin-js:$(TAG)
 
-.PHONY: docker-push-azfn
-docker-push-azfn:
+.PHONY: docker-spin-py
+docker-spin-py:
+	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-py:$(TAG) ./src/spin-func-py
+	docker push $(REPO)/spin-py:$(TAG)
+	cd manifests/overlays/spin && kustomize edit set image spin-py=$(REPO)/spin-py:$(TAG)
+
+.PHONY: docker-spin-rust
+docker-spin-rust:
+	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-rust:$(TAG) ./src/spin-func-rust
+	docker push $(REPO)/spin-rust:$(TAG)
+	cd manifests/overlays/spin && kustomize edit set image spin-rust=$(REPO)/spin-rust:$(TAG)
+
+.PHONY: docker-spin-go
+docker-spin-go:
+	docker buildx build $(SPIN_BUILD_ARGS) -t $(REPO)/spin-go:$(TAG) ./src/spin-func-go
+	docker push $(REPO)/spin-go:$(TAG)
+	cd manifests/overlays/spin && kustomize edit set image spin-go=$(REPO)/spin-go:$(TAG)
+
+.PHONY: docker-azfn
+docker-azfn: docker-azfn-js docker-azfn-py
+
+.PHONY: docker-azfn-js
+docker-azfn-js:
+	docker build --platform=linux/amd64 -t $(REPO)/azfn-js:$(TAG) ./src/az-func-js
 	docker push $(REPO)/azfn-js:$(TAG)
+	cd manifests/overlays/azfn && kustomize edit set image azfn-js=$(REPO)/azfn-js:$(TAG)
+
+.PHONY: docker-azfn-py
+docker-azfn-py:
+	docker build --platform=linux/amd64 -t $(REPO)/azfn-py:$(TAG) ./src/az-func-py
 	docker push $(REPO)/azfn-py:$(TAG)
+	cd manifests/overlays/azfn && kustomize edit set image azfn-py=$(REPO)/azfn-py:$(TAG)
 
 .PHONY: apply-manifests
 apply-manifests:

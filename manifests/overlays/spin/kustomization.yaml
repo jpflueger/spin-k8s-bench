@@ -4,21 +4,21 @@ metadata:
   name: spin
 
 resources:
-  - js
-  - py
-  - rust
-  - go
+- js
+- py
+- rust
+- go
 
 images:
+- name: spin-go
+  newName: docker.io/jpflueger/spin-go
+  newTag: 9a920ff
 - name: spin-js
-  newName: jpflueger/spin-js
+  newName: docker.io/jpflueger/spin-js
   newTag: 9a920ff
 - name: spin-py
-  newName: jpflueger/spin-py
+  newName: docker.io/jpflueger/spin-py
   newTag: 9a920ff
 - name: spin-rust
-  newName: jpflueger/spin-rust
-  newTag: 9a920ff
-- name: spin-go
-  newName: jpflueger/spin-go
+  newName: docker.io/jpflueger/spin-rust
   newTag: 9a920ff

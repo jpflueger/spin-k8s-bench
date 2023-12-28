@@ -4,13 +4,13 @@ metadata:
   name: azfn
 
 resources:
-  - js
-  - py
+- js
+- py
 
 images:
 - name: azfn-js
-  newName: jpflueger/azfn-js
-  newTag: 67314bc
+  newName: docker.io/jpflueger/azfn-js
+  newTag: 9a920ff
 - name: azfn-py
-  newName: jpflueger/azfn-py
-  newTag: 67314bc
+  newName: docker.io/jpflueger/azfn-py
+  newTag: 9a920ff
