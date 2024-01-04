@@ -1,4 +1,4 @@
-variable "prefix" { 
+variable "prefix" {
   default = ""
 }
 
@@ -51,6 +51,18 @@ variable "user_nodepools" {
     }
     taints = []
   }]
+}
+
+variable "metric_annotations_allowlist" {
+  description = "Specifies a list of Kubernetes annotation keys that will be used in the resource's labels metric."
+  type        = list(string)
+  default     = []
+}
+
+variable "metric_labels_allowlist" {
+  description = "(Optional) Specifies a Comma-separated list of additional Kubernetes label keys that will be used in the resource's labels metric."
+  type        = list(string)
+  default     = []
 }
 
 variable "tags" {
