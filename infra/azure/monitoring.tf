@@ -415,3 +415,10 @@ resource "azurerm_role_assignment" "datareaderrole" {
   role_definition_name = "Monitoring Data Reader"
   principal_id         = azurerm_dashboard_grafana.grafana.identity.0.principal_id
 }
+
+resource "azurerm_role_assignment" "grafana_admin" {
+  count                = length(var.grafana_admins)
+  scope                = azurerm_dashboard_grafana.grafana.id
+  role_definition_name = "Grafana Admin"
+  principal_id         = var.grafana_admins[count.index]
+}

@@ -22,6 +22,10 @@ user_nodepools = [{
   taints = []
 }]
 
+# to set the current user as an admin you can get your user id from the az cli
+# example: az ad signed-in-user show -o tsv --query id
+grafana_admins = [  ]
+
 tags = {
   "Purpose"     = "Benchmarking Spin on Kubernetes"
 }

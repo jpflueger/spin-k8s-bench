@@ -53,6 +53,12 @@ variable "user_nodepools" {
   }]
 }
 
+variable "grafana_admins" {
+  description = "List of object id's to be assigned as Grafana admins"
+  type = list(string)
+  default = []
+}
+
 variable "metric_annotations_allowlist" {
   description = "Specifies a list of Kubernetes annotation keys that will be used in the resource's labels metric."
   type        = list(string)
